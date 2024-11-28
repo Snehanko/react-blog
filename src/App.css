@@ -28,4 +28,33 @@ body{
   margin:.2rem;
 }
 
+.post-container{
+  padding: .625rem 1.25rem;
+  background-color: aliceblue;
+  border: 1px solid;
+  margin: .1rem .2rem;
+}
+
+.post-author{
+  text-align: right;
+}
+
+.post-container div{
+  border: 1px solid black;
+  margin: .8rem;
+  padding: .5rem;
+  display: flex;
+  justify-content: left;
+}
+
+.post-container div label{
+  margin-right: 1rem;
+}
+
+.post-form .error {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+}
+
 
