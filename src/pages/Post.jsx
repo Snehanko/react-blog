@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-
-const posts = [
-  { id: 1, title: "First Post", summary: "This is the first blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula ullamcorper metus, nec ullamcorper eros rhoncus rhoncus. Donec nunc turpis, cursus eget aliquam quis, aliquet non dolor. Fusce condimentum faucibus.",author:"John doe" },
-  { id: 2, title: "Second Post", summary: "This is the second blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula ullamcorper metus, nec ullamcorper eros rhoncus rhoncus. Donec nunc turpis, cursus eget aliquam quis, aliquet non dolor. Fusce condimentum faucibus.", author:"Petter Kint" },
-];
+import { postContext } from "../App";
 
 const Post = () => {
+  const {posts}= useContext(postContext);
   const { id } = useParams();
   const post = posts.find((p) => p.id === parseInt(id));
 
