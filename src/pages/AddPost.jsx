@@ -24,18 +24,13 @@ function AddPost() {
     }
   })
 
-  
-  
   const {register,handleSubmit,formState} = form
   const {errors} = formState
   
   const onSubmit = (data) => {
     const newBlog={ title:data.title, summary:data.post, author:data.author};
     setPost([...posts,newBlog])
-    console.log('Form Submitted ', posts)
-
   }
-
 
   return (
     <div className='post-container '>
