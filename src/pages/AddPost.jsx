@@ -1,20 +1,18 @@
-import React,{useState} from 'react'
+import React,{useState,useContext,useId} from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom';
+import { postContext } from '../App';
 
 
 function AddPost() {
 
-  const [posts,setPost]=useState( [
-      { id: 1, title: "First Post", summary: "This is the first blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula ullamcorper metus, nec ullamcorper eros rhoncus rhoncus. Donec nunc turpis, cursus eget aliquam quis, aliquet non dolor. Fusce condimentum faucibus.",author:"John doe" },
-      { id: 2, title: "Second Post", summary: "This is the second blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula ullamcorper metus, nec ullamcorper eros rhoncus rhoncus. Donec nunc turpis, cursus eget aliquam quis, aliquet non dolor. Fusce condimentum faucibus.", author:"Petter Kint" },
-    ])
-
-  
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const currentDate=new Date();
+  var id=useId();
 
   const form = useForm({
     defaultValues:{
+      id:id=useId(),
       author:"",
       title:"",
       post:"",
@@ -23,11 +21,17 @@ function AddPost() {
   })
 
   const {register,handleSubmit,formState} = form
+  const {posts,setPost} = useContext(postContext)
   const {errors} = formState
   
+  const navigate = useNavigate();
+  
   const onSubmit = (data) => {
-    const newBlog={ title:data.title, summary:data.post, author:data.author};
+    const newBlog={ id:data.id, title:data.title, summary:data.post, author:data.author, date:data.date};
     setPost([...posts,newBlog])
+    console.log(posts)
+    navigate("/")
+    
   }
 
   return (
