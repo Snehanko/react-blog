@@ -6,13 +6,17 @@ import { postContext } from '../App';
 
 function AddPost() {
 
-  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const {posts,setPost} = useContext(postContext)
+  const navigate = useNavigate();
+
   const currentDate=new Date();
-  var id=useId();
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  
+  var id=posts[posts.length - 1].id+1
 
   const form = useForm({
     defaultValues:{
-      id:id=useId(),
+      id:id,
       author:"",
       title:"",
       post:"",
@@ -21,17 +25,13 @@ function AddPost() {
   })
 
   const {register,handleSubmit,formState} = form
-  const {posts,setPost} = useContext(postContext)
   const {errors} = formState
-  
-  const navigate = useNavigate();
+
   
   const onSubmit = (data) => {
     const newBlog={ id:data.id, title:data.title, summary:data.post, author:data.author, date:data.date};
     setPost([...posts,newBlog])
-    console.log(posts)
-    navigate("/")
-    
+    navigate("/")    
   }
 
   return (
